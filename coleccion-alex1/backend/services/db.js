@@ -21,7 +21,8 @@ async function testDatabaseConnection() {
         const connection = await mysql.createConnection(config.db);
 
         // Mostrar mensaje de conexión exitosa con detalles
-        console.log('\nConexión a la base de datos exitosa, \n|puerto: ' + config.db.port, '|usuario: ' + config.db.user, '|base de datos: ' + config.db.database);
+        console.log('\nConexión a la base de datos exitosa, \n|puerto: ' + config.db.port,
+         '|usuario: ' + config.db.user, '|base de datos: ' + config.db.database);
 
         // Cierra la conexión de prueba
         connection.end();

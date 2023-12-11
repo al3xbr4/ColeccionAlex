@@ -19,11 +19,15 @@ import {
   TableHead,
   TableRow,
 } from '@mui/material';
-import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
-import HomeIcon from '@mui/icons-material/Home';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import DeleteIcon from '@mui/icons-material/Delete';
+
+// Importa el componente Informe
+import Informe from './Informe';
+
+// Importa el nuevo Topbar
+import Topbar from './Topbar';
 
 function Home() {
   const user = useSelector((state) => state.login);
@@ -95,7 +99,7 @@ function Home() {
   };
 
   const handleShowRecords = () => {
-    fetchData(); // Llama a fetchData para actualizar la tabla
+    fetchData();
   };
 
   const fetchData = async () => {
@@ -121,47 +125,8 @@ function Home() {
     <div>
       {user && user.isAutenticated ? (
         <>
-          <AppBar position='static' style={{ marginBottom: '20px' }}>
-            <Container>
-              <Toolbar>
-                <Grid container alignItems='center'>
-                  <Grid item>
-                    <HomeIcon style={{ fontSize: 28, marginRight: '8px' }} />
-                  </Grid>
-                  <Grid item>
-                    <Typography variant="h6">{`Usuario: ${user.userName}`}</Typography>
-                  </Grid>
-                  <Grid item xs={9}>
-                    <Grid
-                      container
-                      spacing={2}
-                      justifyContent='flex-end'
-                      alignItems='center'
-                    >
-                      <Grid item>
-                        <Link to='/login'>Inicio</Link>
-                      </Grid>
-                      <Grid item>
-                        <Link to='/'>Informes</Link>
-                      </Grid>
-                      <Grid item>
-                        <Link to='/'>Ayuda</Link>
-                      </Grid>
-                      <Grid item>
-                        <Button
-                          variant='contained'
-                          onClick={handleLogout}
-                          style={{ fontSize: '16px', color: 'white' }}
-                        >
-                          Salir
-                        </Button>
-                      </Grid>
-                    </Grid>
-                  </Grid>
-                </Grid>
-              </Toolbar>
-            </Container>
-          </AppBar>
+          {/* Usa el nuevo Topbar en lugar del antiguo */}
+          <Topbar user={user} />
 
           <Paper style={{ padding: '20px' }}>
             <Box

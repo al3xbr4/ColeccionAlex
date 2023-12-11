@@ -5,13 +5,13 @@ const db = require('./db');
 async function getData() {
   try {
     const result = await db.query('SELECT * FROM usuarios');
+    console.log('Data fetched successfully:', result); // Agregado para depuración
     return result;
   } catch (error) {
-    console.error('Error while getting data ', error.message);
+    console.error('Error while getting data:', error.message);
     throw error;
   }
 }
-
 const insertData = async (req, res) => {
   const { nombre, login, rol, password } = req.query;
 
@@ -26,7 +26,8 @@ const insertData = async (req, res) => {
     } catch (error) {
       // Maneja los errores de la consulta SQL
       console.error('Error while inserting data ', error);
-      return { error: 'Error al insertar datos en la base de datos' };
+      console.error('SQL Error details:', error.sqlMessage); // Imprime detalles específicos del error SQL
+      return { error: 'Error al insertar datos en la base de datos', details: error.message };
     }
   } else {
     // Si algún campo es undefined, devuelve un mensaje de error
